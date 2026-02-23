@@ -16,7 +16,7 @@
 
 ### Step 2: SSH Connection
 *Command used to connect from my local terminal:*
-```bash
+
 # Change permission of key (Essential for security)
 chmod 400 "my-key.pem"
 
@@ -30,19 +30,19 @@ Success: I saw the ubuntu@ip-172-xx-xx-xx:~$ prompt. I am now inside the cloud s
 Turning the empty server into a Web Server.
 Commands Run:
 Update the System:
-Bash
+
 sudo apt update
 
 
 Why: To make sure the package list is fresh.
 Install Nginx:
-Bash
+
 sudo apt install nginx -y
 
 
 Why: Nginx is a high-performance web server.
 Check Status:
-Bash
+
 sudo systemctl status nginx
 
 
@@ -64,21 +64,21 @@ Result: Saw the "Welcome to nginx!" default page. 🎉
 📜 Part 4: Log Management
 Extracting evidence of who visited the site.
 Step 1: View Logs
-Bash
+
 # View live access logs
 sudo tail -f /var/log/nginx/access.log
 
 
 Action: I refreshed my browser page multiple times and saw new lines appearing in the terminal.
 Step 2: Extract & Save
-Bash
+
 # Save the last 50 lines to a file in the home directory
 sudo tail -n 50 /var/log/nginx/access.log > ~/nginx-logs.txt
 
 
 Step 3: Download to Local Machine
 Ran this command on my LOCAL terminal (not the server):
-Bash
+
 scp -i "my-key.pem" ubuntu@<Public-IP>:~/nginx-logs.txt .
 
 
