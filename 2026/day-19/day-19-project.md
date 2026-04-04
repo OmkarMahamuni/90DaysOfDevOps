@@ -110,31 +110,19 @@ My Cron Entries (crontab -e):
 */5 * * * * /home/ubuntu/assignment19/health_check.sh
 ```
 🧠 CRON SYNTAX CHEAT SHEET
-Time
-Cron
-English
-Every minute
-* * * * *
-Non-stop!
-Hourly
-0 * * * *
-Top of every hour
-Daily 2AM
-0 2 * * *
-✅ Your log rotation
-Weekly Sunday
-0 3 * * 0
-✅ Your backup
-Every 5 min
-*/5 * * * *
-✅ Health check
-Weekdays only
-* * * * 1-5
-Mon-Fri
-15th of month
-0 0 15 * *
-Monthly
+```
+# 🧠 CRON SYNTAX CHEAT SHEET
 
+| Time | Cron | English |
+| :--- | :--- | :--- |
+| Every minute | `* * * * *` | Non-stop! |
+| Hourly | `0 * * * *` | Top of every hour |
+| Daily 2AM | `0 2 * * *` | ✅ Your log rotation |
+| Weekly Sunday | `0 3 * * 0` | ✅ Your backup |
+| Every 5 min | `*/5 * * * *` | ✅ Health check |
+| Weekdays only | `* * * * 1-5` | Mon-Fri |
+| 15th of month | `0 0 15 * *` | Monthly |
+```
 
 
 
