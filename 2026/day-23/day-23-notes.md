@@ -55,6 +55,8 @@ If a feature or experiment breaks it only breaks on that branch, and not on the 
 Go to github.com and create a new repository (do NOT check the "Add a README" box).
 Copy the URL provided by GitHub (it will look like https://github.com/your-username/repo-name.git).
 
+### *My GitHub repo - https://github.com/OmkarMahamuni/Git-Hands-On-Introduction-to-Git.git*
+
 * Connect your local folder to the new GitHub repository
 `git remote add origin <PASTE_YOUR_GITHUB_URL_HERE>`
 
