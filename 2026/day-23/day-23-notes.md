@@ -18,11 +18,51 @@ If a feature or experiment breaks it only breaks on that branch, and not on the 
 **4. What happens to your files when you switch branches?**
 * `The Files form the current branch, stays the same. While the new created branch starts with current commits.`
 
-## Task 2: Understanding Branches
+## Task 2: Branching Commands - Hands-On 
+
+* 1. List all branches (you should just see 'main' or 'master' with a * next to it)
+`git branch`
+
+* 2. Create a new branch called feature-1
+`git branch feature-1`
+
+* 3. Switch to feature-1
+`git switch feature-1`
+
+* 4. Create AND switch to feature-2 in a single command
+`git switch -c feature-2`
+
+* 5. Switch back to feature-1 to do some work
+`git switch feature-1`
+
+* 6. Make a commit on feature-1 that does not exist on main
+`echo "This is a new feature test." > feature-test.txt`
+`git add feature-test.txt`
+`git commit -m "Added a test file"`
+
+* 7. Switch back to main and verify the file is gone!
+`git switch main`
+`ls`  # Notice that feature-test.txt has disappeared. It only exists on the feature-1 branch!
+
+* 8. Delete the feature-2 branch since we didn't use it
+`git branch -d feature-2`
 
 **Q. Try using `git switch` to move between branches — how is it different from `git checkout`?**
 * `git switch - It is used to move between the branches and creating new branches`
 * `git checkout - Creates a new branch and switch to new barnch along with all of the commit history.`
+
+## Task 3: Push to GitHub
+Go to github.com and create a new repository (do NOT check the "Add a README" box).
+Copy the URL provided by GitHub (it will look like https://github.com/your-username/repo-name.git).
+
+* Connect your local folder to the new GitHub repository
+`git remote add origin <PASTE_YOUR_GITHUB_URL_HERE>`
+
+* Push the main branch to GitHub and set upstream tracking (-u)
+`git push -u origin main`
+
+* Push the feature-1 branch to GitHub as well
+git push -u origin feature-1
 
 ## Task 3 & 4: GitHub, Remotes, and Pulling
 
