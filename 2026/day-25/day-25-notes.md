@@ -37,7 +37,9 @@
    - -> `--hard` is destructive because it deletes your actual file changes. If you haven't backed up those changes, they are gone.
 
 * When would you use each one?
-   - -> 
+   - -> `--soft`: Use when you want to move the branch back but keep the changes staged so you can quickly adjust the commit (message, combine, or recommit).
+   - -> `--mixed`: Use when you want to undo a commit but keep the file changes in your working tree as unstaged so you can edit or selectively stage before committing.
+   - -> `--hard`: Use when you want to completely discard the commit and any working-tree/index changes, resetting everything to a chosen commit (danger: irreversible without reflog).
 
 * Should you ever use `git reset` on commits that are already pushed?
    - -> No! `git reset` rewrites history. If you reset a commit that is already on GitHub, and then try to push, Git will reject it because your local history no longer matches the cloud.
@@ -69,9 +71,17 @@ Commit Y is still there, but there is a brand new commit on top that says "Rever
 ---
 
 4. Answer in your notes:
-   - How is `git revert` different from `git reset`?
-   - Why is revert considered **safer** than reset for shared branches?
-   - When would you use revert vs reset?
+* How is `git revert` different from `git reset`?
+   - -> *`git reset` acts like a time machine, erasing commits as if they never happened.*
+   - -> *`git revert` acts like an apology; it creates a *brand new commit* that applies the exact opposite changes of the bad commit.*
+
+* Why is revert considered **safer** than reset for shared branches?
+   - -> Revert is safer for shared branches because it does not rewrite published history — it creates new commits that undo changes instead of changing or removing existing commits.
+   - -> `revert` only moves forward! It doesn't delete any history. If you push a bad commit to `main`, you can `revert` it, push the new "apology" commit, and nobody's local repository gets broken.
+
+* When would you use revert vs reset?
+   - -> `reset` will be used for Fixing local, un-pushed typos or mistakes.
+   - -> `revert` will be used for Undoing bugs that have already been pushed/merged to `main`.
 
 ---
 
@@ -95,12 +105,36 @@ Research the following branching strategies and document each in your notes with
 - Pros and cons
 
 1. **GitFlow** — develop, feature, release, hotfix branches
+* **How it works:** A strict, heavy framework. It uses two long-lived branches (`main` for production, `develop` for integration). Developers branch off `develop` to create `feature` branches. When ready for release, a `release` branch is made, tested, and finally merged into `main`. Urgent production bugs use `hotfix` branches.
+* **Diagram:** `main` <--- `hotfix` | `main` <--- `release` <--- `develop` <--- `feature`
+* **When used:** Large enterprise software with strict, scheduled release cycles (e.g., banking apps, desktop software).
+* **Pros:** Very structured, highly controlled releases.
+* **Cons:** Overly complex, slows down deployment speed, lots of "merge hell".
+
 2. **GitHub Flow** — simple, single main branch + feature branches
+* **How it works:** Extremely simple. There is only one long-lived branch (`main`), which is always deployable. Developers create a branch off `main`, commit changes, open a Pull Request, review it, and merge it straight back into `main`.
+* **Diagram:** `main` <--- `feature-branch`
+* **When used:** Agile web applications, startups, and Continuous Delivery environments.
+* **Pros:** Fast, simple, encourages small and frequent deployments.
+* **Cons:** Requires excellent automated testing, because bad code goes straight to `main`.
+
+
 3. **Trunk-Based Development** — everyone commits to main, short-lived branches
+* **How it works:** Developers don't use long-lived feature branches at all. Everyone commits their code directly to the "trunk" (`main`) multiple times a day. Features are hidden behind "Feature Flags" in the code until they are fully built.
+* **Diagram:** `main` <--- (Dev 1 commit) <--- (Dev 2 commit)
+* **When used:** Elite DevOps teams doing Continuous Deployment (e.g., Google, Facebook).
+* **Pros:** Completely eliminates merge conflicts, fastest possible integration.
+* **Cons:** Requires extreme discipline, senior developers, and perfect CI/CD pipelines.
+
 4. Answer:
-   - Which strategy would you use for a startup shipping fast?
-   - Which strategy would you use for a large team with scheduled releases?
-   - Which one does your favorite open-source project use? (check any repo on GitHub)
+* Which strategy would you use for a startup shipping fast?
+- -> GitHub Flow. It balances speed with the safety of Pull Request reviews.
+  
+* Which strategy would you use for a large team with scheduled releases?
+- -> GitFlow. It provides the necessary staging grounds for QA teams to test before a monthly release.
+
+* Which one does your favorite open-source project use? (check any repo on GitHub)
+- -> Kubernetes uses a variation of GitHub Flow, relying heavily on Pull Requests directly into the master branch, with automated bots handling the merges.
 
 ---
 
