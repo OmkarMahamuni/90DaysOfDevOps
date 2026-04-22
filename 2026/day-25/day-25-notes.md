@@ -45,9 +45,29 @@
 ---
 
 ### Task 2: Git Revert — Hands-On
+
 1. Make 3 commits (commit X, Y, Z)
+* -> `echo "X" > revert.txt && git add revert.txt && git commit -m "Commit X"`
+* -> `echo "Y" >> revert.txt && git add revert.txt && git commit -m "Commit Y"`
+* -> `echo "Z" >> revert.txt && git add revert.txt && git commit -m "Commit Z"`
+
 2. Revert commit Y (the middle one) — what happens?
+* -> `git log --oneline`
+* -> `git revert <hash>`
+
+#Revert Commit Y (Replace <hash> with the actual hash of Commit Y = f6293do)
+
+#This will open text editor. Save and close to accept the default revert message.
+
+
 3. Check `git log` — is commit Y still in the history?
+* -> `git log --oneline`
+
+Commit Y is still there, but there is a brand new commit on top that says "Revert 'Commit Y'"
+
+<img width="926" height="178" alt="image" src="https://github.com/user-attachments/assets/29e64b1f-8b42-4e25-9637-0938bfa05701" />
+---
+
 4. Answer in your notes:
    - How is `git revert` different from `git reset`?
    - Why is revert considered **safer** than reset for shared branches?
@@ -60,10 +80,10 @@ Create a comparison in your notes:
 
 | | `git reset` | `git revert` |
 |---|---|---|
-| What it does | ? | ? |
-| Removes commit from history? | ? | ? |
-| Safe for shared/pushed branches? | ? | ? |
-| When to use | ? | ? |
+| What it does | Erases history back to a specific point. | Creates a new commit that undoes a previous one. |
+| Removes commit from history? | Yes | No |
+| Safe for shared/pushed branches? | No | Yes |
+| When to use | Fixing local, un-pushed typos or mistakes. | Undoing bugs that have already been pushed/merged to `main`. |
 
 ---
 
