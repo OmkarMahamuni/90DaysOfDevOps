@@ -88,10 +88,33 @@
 ---
 
 ### Task 4: Pull Requests
+
 1. Create a branch, make a change, push it, and create a **pull request** entirely from the terminal
+* -> `git switch -c feature-update-readme`
+* -> `echo "Adding some new text" >> README.md`
+* -> `git add README.md && git commit -m "Updated README"`
+* -> `git push -u origin feature-update-readme`
+<img width="960" height="666" alt="image" src="https://github.com/user-attachments/assets/26622f76-69a0-440f-8b70-7645cae8fdb1" />
+
+---
+
+* -> *# Create a Pull Request WITHOUT leaving the terminal!*
+* -> *# --fill automatically uses your commit message for the PR title/body*
+* -> `gh pr create --fill`
+<img width="952" height="536" alt="image" src="https://github.com/user-attachments/assets/bef672a2-fedf-4074-a63f-de16d3f0a7f2" />
+
+
 2. List all open PRs on a repo
+* -> `gh pr list`
+
 3. View the details of your PR — check its status, reviewers, and checks
+* -> `gh pr view 2 --json state,reviewRequests,statusCheckRollup`
+  
 4. Merge your PR from the terminal
+* -> `gh pr merge`
+<img width="813" height="167" alt="image" src="https://github.com/user-attachments/assets/2d0b68ba-3537-4094-8af8-75bc2dc08fd2" />
+---
+
 5. Answer in your notes:
 
 * What merge methods does `gh pr merge` support?
@@ -105,11 +128,19 @@
 ---
 
 ### Task 5: GitHub Actions & Workflows (Preview)
-1. List the workflow runs on any public repo that uses GitHub Actions
-2. View the status of a specific workflow run
-3. Answer in your notes: How could `gh run` and `gh workflow` be useful in a CI/CD pipeline?
 
-(Don't worry if you haven't learned GitHub Actions yet — this is a preview for upcoming days)
+1. List the workflow runs on any public repo that uses GitHub Actions
+* -> `gh repo clone actions/checkout`
+* -> `ch checkout`
+
+2. View the status of a specific workflow run
+* -> `gh run list`
+<img width="962" height="607" alt="image" src="https://github.com/user-attachments/assets/2fcc3eed-380d-4291-bef1-2389b570c2bb" />
+
+
+3. Answer in your notes: How could `gh run` and `gh workflow` be useful in a CI/CD pipeline?
+* -> Imagine you push code that triggers a 10-minute automated testing pipeline (GitHub Action). Instead of keeping a browser tab open and staring at a loading spinner, you can stay in your terminal and type `gh run watch`. It will show you the live status of the pipeline right in your command line, letting you know the exact second it passes or fails.
+
 
 ---
 
