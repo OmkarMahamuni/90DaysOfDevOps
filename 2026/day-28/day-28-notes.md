@@ -8,6 +8,7 @@ Go through the checklist below. For each item, mark yourself honestly:
 
 #### Linux
 - [ ] Navigate the file system, create/move/delete files and directories
+    - Can do confidently
 - [ ] Manage processes — list, kill, background/foreground
 - [ ] Work with systemd — start, stop, enable, check status of services
 - [ ] Read and edit text files using vi/vim or nano
