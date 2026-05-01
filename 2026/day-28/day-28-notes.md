@@ -1,4 +1,4 @@
-## Challenge Tasks
+## Challenge Tasks - day-28-notes.md
 
 ### Task 1: Self-Assessment Checklist
 Go through the checklist below. For each item, mark yourself honestly:
@@ -113,29 +113,42 @@ Answer these from memory (no Googling). Then verify your answers:
 
 
 7. What does `git stash` do and when would you use it?
-    - 
+    - It temporarily hides your modified, uncommitted files in a clipboard, leaving your working directory clean. You use it when you are in the middle of a feature and urgently need to switch branches to fix a bug, but don't want to commit half-finished code.
 
 8. How do you schedule a script to run every day at 3 AM?
-
+    - In `crontab -e`, add the entry: `0 3 * * * /path/to/script.sh`
 
 9. What is the difference between `git fetch` and `git pull`?
-
+    - `git fetch` safely downloads the latest history from the remote repository so you can review it, but it does not touch your working files.
+    - `git pull` does a fetch, and then immediately tries to merge those changes into your current code.
 
 10. What is LVM and why would you use it instead of regular partitions?
-
+    - Logical Volume Management. It allows you to dynamically resize partitions without unmounting them or rebooting the server. You can also span a single volume across multiple physical hard drives.
 
 ---
 
 ### Task 4: Organize Your Work
+
 1. Make sure all your daily submissions (day-1 through day-27) are committed and pushed
+    - ✅
+
 2. Check that your `git-commands.md` is up to date
+    - ✅
+
 3. Check that your shell scripting cheat sheet is complete
+    - ✅
+
 4. Verify your GitHub profile and repos are clean (from Day 27)
+    - ✅
 
 ---
 
 ### Task 5: Teach It Back
+
 Pick **one topic** you've learned and write a short explanation (5-10 lines) as if you're teaching it to someone who has never heard of it. Add it to your `day-28-notes.md`.
+- *Explaining Git Branching to a Non-Developer:*
+        - Imagine you are writing a book with a co-author. If you both edit the exact same master document at the same time, you will accidentally delete each other's sentences. In Git, a "branch" is like making a complete photocopy of the book and taking it to your own desk. You can write new chapters, cross things out, and make a total mess in your copy without affecting the master document. Once you are perfectly happy with your new chapter, you hand it to an editor, and they carefully staple your new pages into the master book. That stapling process is called a "merge".
+
 
 Examples:
 - Explain Git branching to a non-developer
