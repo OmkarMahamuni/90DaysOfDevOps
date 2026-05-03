@@ -82,11 +82,25 @@ Research and write short notes on:
 ---
 
 ### Task 4: Explore
-1. Run a container in **detached mode** — what's different?
-2. Give a container a custom **name**
-3. Map a **port** from the container to your host
+1. Run a container in **detached mode** = (`-d`) — what's different?
+  - `docker run -d --name my-web-server nginx`
+
+2. Give a container a custom **name** (`--name`)
+  - `docker run -d --name my-web-server nginx`
+  - <img width="1016" height="511" alt="image" src="https://github.com/user-attachments/assets/7b86829f-eea5-4226-b672-f5f997900093" />
+
+
+3. Map a **port** (`-p`) from the container to your host
+  - `docker run -d -p 80:80 nginx`
+
 4. Check **logs** of a running container
+  - `docker logs <container ID / container name>`
+  - <img width="963" height="823" alt="image" src="https://github.com/user-attachments/assets/844e0be5-36e1-4ecd-b91b-fea80c605488" />
+  
 5. Run a command **inside** a running container
+  - If a container is already running in the background, you can "jump" into it without stopping it.
+  - `docker exec -it <container ID / container name>`
+  - <img width="947" height="495" alt="image" src="https://github.com/user-attachments/assets/a8eba02b-d732-4077-a8e9-23b7639ec92e" />
 
 ---
 
