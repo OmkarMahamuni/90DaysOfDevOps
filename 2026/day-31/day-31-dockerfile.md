@@ -39,6 +39,18 @@ Create a new Dockerfile that uses **all** of these instructions:
 - `CMD` — default command
 
 Build and run it. Understand what each line does.
+
+#### **Dockerfile Instructions**
+| Instruction | Purpose | Example |
+|-------------|---------|---------|
+| **FROM** | Base image | `FROM nginx:alpine` |
+| **RUN** | Build-time commands | `RUN apt install curl` |
+| **COPY** | Copy host→image | `COPY . /app/` |
+| **WORKDIR** | Working directory | `WORKDIR /app` |
+| **EXPOSE** | Document port | `EXPOSE 80` |
+| **CMD** | Default command | `CMD ["nginx"]` |
+
+
 - `mkdir task2 && cd task2`
 - `echo "Hello from the host Machine!" > myfile.txt`
 - `vim Dockerfile` 
