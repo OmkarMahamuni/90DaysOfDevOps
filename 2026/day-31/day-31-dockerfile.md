@@ -63,36 +63,69 @@ I created multiple Dockerfiles today. Here is a breakdown of the core instructio
 ### Task 3: CMD vs ENTRYPOINT
 
 1. Create an image with `CMD ["echo", "hello"]` — run it, then run it with a custom command. What happens?
+    - `docker build -t cmd-test .`
+    - `docker run cmd-test`           # Hello
+    - `docker run cmd-test "World"`   # Hello (ignores arg!)
+    - **Behavior:** `CMD` provides default arguments, but they are easily replaced/overridden if the user specifies a command at the end of `docker run`.
+    - <img width="948" height="540" alt="image" src="https://github.com/user-attachments/assets/f0914745-6051-486f-8b72-79aadf87a495" />
+    - <img width="951" height="242" alt="image" src="https://github.com/user-attachments/assets/5af122fd-4b1c-478c-88be-ba8d5d1f8615" />
 
 
 2. Create an image with `ENTRYPOINT ["echo"]` — run it, then run it with additional arguments. What happens?
+    - `docker build -t entry-test .`
+    - `docker run entry-test`    # Hello
+    - `docker run entry-test "World"`  # Hello World ✅
+    - **Behavior:** `ENTRYPOINT` acts as an unchangeable executable. Any arguments passed at the end of `docker run` are *appended* to the Entrypoint, rather than replacing it.
+    - <img width="958" height="607" alt="image" src="https://github.com/user-attachments/assets/69027276-5764-44f2-8045-d53875c5a5c3" />
 
 
 3. Write in your notes: When would you use CMD vs ENTRYPOINT?
+    - Use **`ENTRYPOINT`** when your container is designed to run one specific executable every single time (like an Nginx server or a Python script).
+    - Use **`CMD`** to provide default arguments to that Entrypoint, or for general-purpose containers where the user might want to drop into a `bash` shell instead.
+    - Use ENTRYPOINT for apps, CMD for defaults!
 
 ---
 
 ### Task 4: Build a Simple Web App Image
+
 1. Create a small static HTML file (`index.html`) with any content
+    - 
+
 2. Write a Dockerfile that:
    - Uses `nginx:alpine` as base
    - Copies your `index.html` to the Nginx web directory
+
+
 3. Build and tag it `my-website:v1`
+
+
 4. Run it with port mapping and access it in your browser
 
 ---
 
 ### Task 5: .dockerignore
+
 1. Create a `.dockerignore` file in one of your project folders
+
+
 2. Add entries for: `node_modules`, `.git`, `*.md`, `.env`
+
+
 3. Build the image — verify that ignored files are not included
+
 
 ---
 
 ### Task 6: Build Optimization
+
 1. Build an image, then change one line and rebuild — notice how Docker uses **cache**
+
+
 2. Reorder your Dockerfile so that frequently changing lines come **last**
+
+
 3. Write in your notes: Why does layer order matter for build speed?
+
 
 ---
 
