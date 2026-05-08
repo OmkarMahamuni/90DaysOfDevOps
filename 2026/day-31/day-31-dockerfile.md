@@ -89,17 +89,23 @@ I created multiple Dockerfiles today. Here is a breakdown of the core instructio
 ### Task 4: Build a Simple Web App Image
 
 1. Create a small static HTML file (`index.html`) with any content
-    - 
 
 2. Write a Dockerfile that:
    - Uses `nginx:alpine` as base
    - Copies your `index.html` to the Nginx web directory
 
+- <img width="627" height="510" alt="image" src="https://github.com/user-attachments/assets/b0334bbd-e09d-43e5-9f10-4b28a1bed5b9" />
+
 
 3. Build and tag it `my-website:v1`
+    - `docker build -t my-website:v1 .`
+    - <img width="961" height="956" alt="image" src="https://github.com/user-attachments/assets/823c4a17-acb3-407b-a15b-3acafc75950f" />
 
 
 4. Run it with port mapping and access it in your browser
+    - `docker run -d -p 80:80 --name simple-website my-website:v1`
+    - `docker ps -a`
+    - <img width="963" height="952" alt="image" src="https://github.com/user-attachments/assets/d206fd61-f53a-48ab-aa81-48a564e18ead" />
 
 ---
 
@@ -107,25 +113,36 @@ I created multiple Dockerfiles today. Here is a breakdown of the core instructio
 
 1. Create a `.dockerignore` file in one of your project folders
 
-
 2. Add entries for: `node_modules`, `.git`, `*.md`, `.env`
+    - <img width="700" height="486" alt="image" src="https://github.com/user-attachments/assets/1a1fd13c-fba8-41de-80c5-af63e1ceee6a" />
 
 
 3. Build the image — verify that ignored files are not included
-
+    - `docker build -t simple-web:t5 . `
+    - `docker run --rm simple-web:t5 ls /usr/share/nginx/html`
+    - <img width="962" height="848" alt="image" src="https://github.com/user-attachments/assets/d576f9bf-19fe-45c0-8880-8e27f9e4ca45" />
 
 ---
 
 ### Task 6: Build Optimization
 
 1. Build an image, then change one line and rebuild — notice how Docker uses **cache**
+    - `docker build -t build:v1 .`
+    - <img width="711" height="470" alt="image" src="https://github.com/user-attachments/assets/94c908a9-1fe8-451e-94d7-85c1453b14f8" />
+    - <img width="937" height="843" alt="image" src="https://github.com/user-attachments/assets/fa2d0186-f848-4c78-8253-ae20a8096d25" />
+    
+
 
 
 2. Reorder your Dockerfile so that frequently changing lines come **last**
+    - `docker build -t build:v1 .`
+    - <img width="697" height="446" alt="image" src="https://github.com/user-attachments/assets/15ed37f5-8ce8-455d-8c40-d7da7af7ee2d" />
 
 
 3. Write in your notes: Why does layer order matter for build speed?
-
+    - Docker caches every instruction (RUN, COPY, etc.) as a distinct layer. When you rebuild an image, Docker looks for changes. If a layer hasn't changed, Docker instantly uses the cached version.
+    - However, if one layer changes, Docker invalidates the cache for ALL subsequent layers below it.
+    - Therefore, you should always put instructions that change frequently (like COPY . . for your source code) at the very bottom of your Dockerfile. Instructions that rarely change (like installing OS dependencies via RUN apt-get install) should go at the top. This ensures incredibly fast rebuild times.
 
 ---
 
