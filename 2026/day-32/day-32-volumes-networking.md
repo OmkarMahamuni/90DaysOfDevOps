@@ -69,43 +69,83 @@ Write what happened and why.
 ### Task 3: Bind Mounts
 
 1. Create a folder on your host machine with an `index.html` file
-
+  - `mkdir html-files && cd html-files`
+  - `echo "<h1>Hello from the Host Machine!</h1>" > index.html`
 
 2. Run an Nginx container and **bind mount** your folder to the Nginx web directory
-
+  - `docker run -d --name bind-nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx`
 
 3. Access the page in your browser
-
+  - <img width="960" height="585" alt="image" src="https://github.com/user-attachments/assets/2e6b78e9-2b0e-413f-be5c-f54766020060" />
+  - <img width="958" height="302" alt="image" src="https://github.com/user-attachments/assets/92ef15d1-3806-4c09-a764-c16ea0cbabb2" />
 
 4. Edit the `index.html` on your host — refresh the browser
+  - `ls`
+  - ` echo "<h1>I changed this live!</h1>"> index.html`
+  - #Refresh the browser to see the instant change.
+  - <img width="960" height="697" alt="image" src="https://github.com/user-attachments/assets/3e997cc9-7f86-4906-9c14-ce86772703ee" />
 
 
 Write in your notes: What is the difference between a named volume and a bind mount?
-
+  
+- * **Named Volume** * 
+    - By using a Named Volume (`docker volume create my_db_data`) and attaching it to the container (`-v my_db_data:/var/lib/mysql`), the data survived the container's destruction!
+    - *How it works:* A named volume is a storage location managed entirely by Docker, located safely on the host machine (usually `/var/lib/docker/volumes/`). Because it lives completely outside the container's lifecycle, the data persists permanently.
+ 
+- * **Bind Mounts** *
+    - I mapped a local folder containing an `index.html` file to an Nginx container's web directory. When I edited the file on my host machine, the website updated instantly in the browser without needing to rebuild or restart the container.
+   
+- * **Difference between a Named Volume and a Bind Mount:** *
+    - *Named Volume:* Managed by Docker. The exact location on the host disk is abstracted away. Best for databases and long-term state.
+    - *Bind Mount:* Managed by the Host OS. You specify an exact, absolute file path on your host machine to map to the container. Best for local development environments where you want code changes to reflect instantly inside the container.
 
 ---
 
 ### Task 4: Docker Networking Basics
+
 1. List all Docker networks on your machine
+  - 
+
 2. Inspect the default `bridge` network
+
+
 3. Run two containers on the default bridge — can they ping each other by **name**?
+
+
 4. Run two containers on the default bridge — can they ping each other by **IP**?
+
 
 ---
 
 ### Task 5: Custom Networks
+
 1. Create a custom bridge network called `my-app-net`
+
+
 2. Run two containers on `my-app-net`
+
+
 3. Can they ping each other by **name** now?
+
+
 4. Write in your notes: Why does custom networking allow name-based communication but the default bridge doesn't?
+
 
 ---
 
 ### Task 6: Put It Together
+
 1. Create a custom network
+
+
 2. Run a **database container** (MySQL/Postgres) on that network with a volume for data
+
+
 3. Run an **app container** (use any image) on the same network
+
+
 4. Verify the app container can reach the database by container name
+
 
 ---
 
