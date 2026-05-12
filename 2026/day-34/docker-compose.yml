@@ -1,0 +1,49 @@
+services:
+  web:
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    networks:
+      - backend_net
+    labels:
+      - "tier=frontend"
+      - "project=90daysofdevops"
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - backend_net
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "tier=database"
+
+  cache:
+    image: redis:alpine
+    networks:
+      - backend_net
+    restart: on-failure
+    labels:
+      - "tier=cache"
+
+networks:
+  backend_net:
+    driver: bridge
+
+volumes:
+  db_data:
