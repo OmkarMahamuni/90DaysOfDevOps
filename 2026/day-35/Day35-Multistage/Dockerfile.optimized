@@ -1,0 +1,20 @@
+# STAGE 1: Builder
+# We use a specific, minimal tag for the build stage
+FROM golang:1.20-alpine AS builder
+WORKDIR /app
+COPY main.go .
+# Compile the app into a standalone binary
+RUN go build -o myapp main.go
+
+# STAGE 2: Production Runtime
+FROM alpine:3.18
+WORKDIR /app
+
+# BEST PRACTICE: Run as a non-root user for security
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
+# Copy ONLY the compiled binary from the builder stage
+COPY --from=builder /app/myapp .
+
+CMD ["./myapp"]
