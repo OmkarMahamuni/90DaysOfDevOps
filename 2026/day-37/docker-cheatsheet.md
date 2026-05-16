@@ -64,3 +64,11 @@ Keeping it short — one line per command, something that is actually a goto ref
 * **`EXPOSE`**: Documents which port the container listens on (e.g., `EXPOSE 8080`).
 * **`CMD`**: The default command executed *when the container starts* (can be overridden).
 * **`ENTRYPOINT`**: The primary executable of the container (arguments passed at runtime are appended to it).
+
+## Quick flags & shorthand
+* -p|     HOST:CONTAINER       |#publish host port
+* -e|     KEY=VAL              |#set environment variable
+* --name| NAME                 |#set container name
+* --rm|                        |#remove container after exit
+* -it|                         |#interactive + tty
+* -d|                          |#detached mode
