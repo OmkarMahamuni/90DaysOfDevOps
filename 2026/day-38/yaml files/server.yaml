@@ -1,0 +1,24 @@
+---
+server:
+  name: prod-web-01
+  ip: 192.268.1.100
+  post: 8080
+
+database:
+  host: db.internal.local
+  name: app_db
+  credentials:
+    user: admin
+    password: supersecretpassword
+
+startup_script: |
+  #!/bin/bash
+  echo "Starting server..."
+  systemctl start nginx
+  echo "Server started successfully."
+
+start_description: >
+  This server is used to host the
+  frontend of our main application
+  and it connects directly to our
+  internal database.
