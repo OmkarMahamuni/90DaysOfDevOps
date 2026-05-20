@@ -38,13 +38,13 @@ Push it. Go to the **Actions** tab on GitHub and watch it run.
 
 ### Task 3: Understand the Anatomy
 Look at your workflow file and write in your notes what each key does:
-- `on:`
-- `jobs:`
-- `runs-on:`
-- `steps:`
-- `uses:`
-- `run:`
-- `name:` (on a step)
+- `on:` The trigger. It tells GitHub when to execute the workflow (e.g., on a push, a pull_request, or a schedule).
+- `jobs:` A workflow is made up of one or more jobs. Jobs run in parallel by default. Each job represents a specific phase of the pipeline.
+- `runs-on:` Specifies the operating system of the virtual machine (the Runner) that GitHub will spin up to execute the job. ubuntu-latest is the most common.
+- `steps:` A sequential list of tasks that will be executed one by one inside the job. If one step fails, the subsequent steps do not run.
+- `uses:` Calls a pre-built Action from the GitHub community. For example, actions/checkout@v4 is a pre-written script that downloads our repository code onto the runner.
+- `run:` Executes raw shell commands on the runner (like echo, ls, npm install, or docker build).
+- `name:` (on a step) A human-readable title for a step. This is what shows up in the GitHub Actions UI, making it much easier to read the logs.
 
 ---
 
@@ -63,8 +63,12 @@ Push again — watch the new run.
 1. Add a step that runs a command that will **fail** (e.g., `exit 1` or a misspelled command)
 2. Push and observe what happens in the Actions tab
 3. Fix it and push again
-
 Write in your notes: What does a failed pipeline look like? How do you read the error?
+
+The Actions tab showed a red ❌ Failed icon next to the run.
+When I clicked into the job, it highlighted the exact step that failed in red.
+The logs clearly showed: eccho: command not found.
+Crucial Observation: Any steps that were supposed to run after the failed step were automatically skipped and greyed out. The pipeline halted immediately to prevent further damage.
 
 ---
 
