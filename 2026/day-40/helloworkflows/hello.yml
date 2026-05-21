@@ -1,0 +1,31 @@
+name: My First Workflow
+
+on:
+  push:
+    branches:
+      - main # Or whatever your default branch is
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "Hello from GitHub Actions!"
+
+      - name: Print Date and Time
+        run: date
+
+      - name: Print Branch Name
+        run: echo "The branch that triggered this run is ${{ github.ref_name }}"
+
+      - name: List Repository Files
+        run: |
+          echo "Files in this repo:"
+          ls -la
+
+      - name: Print Operating System
+        run: echo "This runner is operating on ${{ runner.os }}"
