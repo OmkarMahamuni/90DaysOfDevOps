@@ -81,24 +81,4 @@ Crucial Observation: Any steps that were supposed to run after the failed step w
 
 ---
 
-## Documentation
-Create `day-40-first-workflow.md` with:
-- Your workflow YAML
-- Screenshot of the green run
-- What each `on:`, `jobs:`, `steps:` key does (your own words)
-
----
-
-## Submission
-1. Add `day-40-first-workflow.md` to `2026/day-40/`
-2. Commit and push to your fork
-
----
-
-## Learn in Public
-Share your first green pipeline screenshot on LinkedIn. That green checkmark hits different.
-
-`#90DaysOfDevOps` `#DevOpsKaJosh` `#TrainWithShubham`
-
-Happy Learning!
-**TrainWithShubham**
+## https://github.com/OmkarMahamuni/github-actions-practice/tree/main 
