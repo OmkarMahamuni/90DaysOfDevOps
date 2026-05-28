@@ -11,6 +11,9 @@
 
 **Verify:** Does it show up on the PR page?
 
+   - <img width="1777" height="610" alt="image" src="https://github.com/user-attachments/assets/493cb12f-15de-47f7-b9fe-1d72d6bcec9e" />
+   - <img width="1896" height="822" alt="image" src="https://github.com/user-attachments/assets/e6740074-6c13-4678-b880-cec0dc313a23" />
+
 ---
 
 ### Task 2: Scheduled Trigger
