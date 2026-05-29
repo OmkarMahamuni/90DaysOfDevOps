@@ -2,6 +2,8 @@
 
 ## Challenge Tasks
 
+GitHub Repo - __https://github.com/OmkarMahamuni/GitHub-Actions-Assignments__
+
 ### Task 1: Trigger on Pull Request
 1. Create `.github/workflows/pr-check.yml`
 2. Trigger it only when a pull request is **opened or updated** against `main`
@@ -17,9 +19,13 @@
 ---
 
 ### Task 2: Scheduled Trigger
+
 1. Add a `schedule:` trigger to any workflow using cron syntax
+
 2. Set it to run every day at midnight UTC
+
 3. Write in your notes: What is the cron expression for every Monday at 9 AM?
+   - The cron expression for every Monday at 9 AM is: `0 9 * * 1`
 
 ---
 
@@ -30,6 +36,11 @@
 4. Go to the **Actions** tab → find the workflow → click **Run workflow**
 
 **Verify:** Can you trigger it manually and see your input printed?
+
+   - <img width="1912" height="773" alt="image" src="https://github.com/user-attachments/assets/1b33c860-670a-4045-967a-17d3f59d99d8" />
+   - <img width="1912" height="821" alt="image" src="https://github.com/user-attachments/assets/b884a155-2985-43f7-9a29-5f14c6b620ff" />
+   - <img width="1908" height="872" alt="image" src="https://github.com/user-attachments/assets/012be4c6-cf9e-403f-ba9b-718ac6a52667" />
+
 
 ---
 
@@ -42,12 +53,24 @@ Create `.github/workflows/matrix.yml` that:
 
 Then extend the matrix to also include 2 operating systems — how many total jobs run now?
 
+   - 2 OS × 3 Python versions = 6 jobs
+
+<img width="1918" height="822" alt="image" src="https://github.com/user-attachments/assets/5737b276-156c-4bf1-a371-9a715b33d47f" />
+
+<img width="1912" height="896" alt="image" src="https://github.com/user-attachments/assets/c62001a1-af31-4145-886a-15b2c6589f5e" />
+
+
 ---
 
 ### Task 5: Exclude & Fail-Fast
 1. In your matrix, **exclude** one specific combination (e.g., Python 3.10 on Windows)
 2. Set `fail-fast: false` — trigger a failure in one job and observe what happens to the rest
 3. Write in your notes: What does `fail-fast: true` (the default) do vs `false`?
+   - *fail-fast*: true (default): If one job in the matrix fails, GitHub cancels all other pending or running jobs in that matrix.
+   - *fail-fast*: false: If one job fails, the remaining jobs in the matrix will continue to run until completion.
+
+<img width="1918" height="906" alt="image" src="https://github.com/user-attachments/assets/8af1ace0-6b4b-4a05-a5f8-5c8ab64c2ffb" />
+
 
 ---
 
