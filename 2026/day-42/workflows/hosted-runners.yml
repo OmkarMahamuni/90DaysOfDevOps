@@ -1,0 +1,33 @@
+name: Hosted Runners Demo
+
+on:
+    workflow_dispatch:
+
+jobs:
+    ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print info - Ubuntu
+              run: |
+                echo "OS: $RUNNER_OS"
+                hostname
+                whoami
+
+    windows:
+        runs-on: windows-latest
+        steps:
+            - name: Print info - Windows
+              shell: pwsh
+              run: |
+                Write-Host "OS: $env:RUNNER_OS"
+                hostname
+                whoami
+
+    macos: 
+        runs-on: macos-latest
+        steps: 
+            - name: Print info - MacOS
+              run: |
+                echo "OS: $RUNNER_OS"
+                hostname
+                whoami
