@@ -1,15 +1,6 @@
 # Day 42 – Runners: GitHub-Hosted & Self-Hosted
 
-## Task
-Every job needs a machine to run on. Today you understand **runners** — GitHub's hosted ones and how to set up your own self-hosted runner on a real server.
-
----
-
-## Expected Output
-- A self-hosted runner registered to your GitHub repo
-- A workflow that runs a job on your self-hosted runner
-- A markdown file: `day-42-runners.md`
-
+## GitHub repo - https://github.com/OmkarMahamuni/GitHub-Actions-Assignments 
 ---
 
 ## Challenge Tasks
@@ -24,8 +15,13 @@ Every job needs a machine to run on. Today you understand **runners** — GitHub
    - The runner's hostname
    - The current user running the job
 3. Watch all 3 run in parallel
-
+ 
 Write in your notes: What is a GitHub-hosted runner? Who manages it?
+   - A GitHub-hosted runner is a fresh, temporary Virtual Machine hosted and fully managed by GitHub. When a job starts, GitHub spins up the VM, runs your steps, and then instantly destroys the VM when the job finishes.
+     
+<img width="1887" height="847" alt="image" src="https://github.com/user-attachments/assets/79536b9b-2141-43a5-9555-21ba7a01f37e" />
+
+<img width="1626" height="818" alt="image" src="https://github.com/user-attachments/assets/23ff0771-1030-413d-9025-6415fb983b62" />
 
 ---
 
@@ -38,6 +34,11 @@ Write in your notes: What is a GitHub-hosted runner? Who manages it?
 2. Look up the GitHub docs for the full list of pre-installed software on `ubuntu-latest`
 
 Write in your notes: Why does it matter that runners come with tools pre-installed?
+   - If a runner was completely blank, you would have to spend 5 to 10 minutes at the start of *every single pipeline* just running `apt-get install docker python nodejs`. Pre-installed tools make CI/CD pipelines incredibly fast and efficient.
+
+
+   - <img width="1882" height="882" alt="image" src="https://github.com/user-attachments/assets/ea30e020-fb3e-40dd-b745-0133d07ca1de" />
+   - <img width="1883" height="875" alt="image" src="https://github.com/user-attachments/assets/c6206837-fcdd-418f-956b-15e68d9947ee" />
 
 ---
 
@@ -51,6 +52,8 @@ Write in your notes: Why does it matter that runners come with tools pre-install
 
 **Verify:** Your runner appears in the Runners list with a green dot.
 
+   - <img width="1062" height="767" alt="image" src="https://github.com/user-attachments/assets/ae356bc3-f774-451f-87ae-92da79731f17" />
+
 ---
 
 ### Task 4: Use Your Self-Hosted Runner
@@ -62,16 +65,23 @@ Write in your notes: Why does it matter that runners come with tools pre-install
    - Create a file and verify it exists on your machine after the run
 4. Trigger it and watch it run on your own hardware
 
-**Verify:** Check your machine — is the file there?
+**Verify:** Check your machine — is the file there? **Yes**
+
+   - <img width="1883" height="897" alt="image" src="https://github.com/user-attachments/assets/3865d61f-b46c-46f1-806a-4ba3b3484179" />
+   - <img width="972" height="446" alt="image" src="https://github.com/user-attachments/assets/d14f9085-f3c5-46d3-883b-570857ccdedf" />
 
 ---
 
 ### Task 5: Labels
 1. Add a **label** to your self-hosted runner (e.g., `my-linux-runner`)
 2. Update your workflow to use `runs-on: [self-hosted, my-linux-runner]`
-3. Trigger it — does it still pick up the job?
+3. Trigger it — does it still pick up the job? **Yes**
 
 Write in your notes: Why are labels useful when you have multiple self-hosted runners?
+   - In a real enterprise, you might have a pool of 50 self-hosted runners. Some might be powerful machines with GPUs for machine learning, while others might be small VMs for deploying to a private internal network. Labels (like `my-linux-runner` or `gpu-enabled`) allow you to route specific jobs to the exact machine equipped to handle that specific workload.
+
+   - <img width="1887" height="868" alt="image" src="https://github.com/user-attachments/assets/f0fff626-9958-4942-9a41-95a3be9c5dac" />
+
 
 ---
 
@@ -80,11 +90,11 @@ Fill this in your notes:
 
 | | GitHub-Hosted | Self-Hosted |
 |---|---|---|
-| Who manages it? | ? | ? |
-| Cost | ? | ? |
-| Pre-installed tools | ? | ? |
-| Good for | ? | ? |
-| Security concern | ? | ? |
+| **Who manages it?** | GitHub (Automatic updates and maintenance) | You (You manage OS updates, disks, and networking) |
+| **Cost** | Paid per minute (after free tier limits) | Free from GitHub (but you pay for your own server/electricity) |
+| **Pre-installed tools** | Massive library of pre-installed software | Only what you manually install yourself |
+| **Good for** | Standard apps, open-source projects, fast setups | Custom hardware (GPUs), accessing private internal networks, large caching |
+| **Security concern** | Low (Ephemeral VMs destroyed after every run) | High (Persistent machines; running untrusted code can compromise your server) |
 
 ---
 
@@ -96,25 +106,3 @@ Fill this in your notes:
 - `runs-on: [self-hosted, linux, my-label]` targets specific ones
 
 ---
-
-## Documentation
-Create `day-42-runners.md` with:
-- Screenshot of your self-hosted runner showing as Idle in GitHub
-- Screenshot of a job running on your self-hosted runner
-- The comparison table from Task 6
-
----
-
-## Submission
-1. Add `day-42-runners.md` to `2026/day-42/`
-2. Commit and push to your fork
-
----
-
-## Learn in Public
-Share your self-hosted runner screenshot on LinkedIn — running CI on your own machine is a cool flex.
-
-`#90DaysOfDevOps` `#DevOpsKaJosh` `#TrainWithShubham`
-
-Happy Learning!
-**TrainWithShubham**
