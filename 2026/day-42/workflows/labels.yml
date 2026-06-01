@@ -1,0 +1,19 @@
+name: Label Test
+
+on:
+    push:
+        branches:
+            - main
+            
+jobs:
+    local-job: 
+        #using both self-hosted and my-linux server label
+        runs-on: [self-hosted, my-linux-runner]
+        steps:
+            - name: Check Machine Details
+              run: |
+                hostname
+                pwd
+
+            - name: Create a local file
+              run: echo "Hello from GitHub Actions!" > action-task6-file.txt
