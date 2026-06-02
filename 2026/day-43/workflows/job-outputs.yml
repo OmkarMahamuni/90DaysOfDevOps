@@ -1,0 +1,26 @@
+name: Job Output Demo
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    job-one:
+        runs-on: ubuntu-latest
+
+        # Define the output to pass to other jobs
+        outputs:
+            my_date: ${{ steps.date_step.outputs.date_str }}
+
+        steps:
+            - name: Set Output
+              id: date_step
+
+              #This syntax is for writing outputs in GitHub Actions
+              run: echo "date_str=$(date)">>$GITHUB_OUTPUT
+
+    job-two:
+        needs: job-one
+        runs-on: ubuntu-latest
+        steps:
+            - name: Read Output fron Job One
+              run: echo "The date from the previous job is ${{ needs.job-one.outputs.my_date }}"
