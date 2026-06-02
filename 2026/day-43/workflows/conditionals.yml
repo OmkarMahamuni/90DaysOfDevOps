@@ -1,0 +1,21 @@
+name: Conditionals
+
+on: [push, pull_request]
+
+jobs:
+    conditional-logic:
+        # Job only runs on push, ignores pull requests
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Only run on Main
+              if: github.ref == 'refs/heads/main'
+              run: echo "This push was to the main branch!"
+
+            - name: Intentionally fail but continue
+              continue-on-error: true
+              run: exit 1 # This forces a failure
+
+            - name: Only run if previous step failed
+              if: failure()
+              run: echo "A previous step failed, but we are running a recovery/alert step!"
