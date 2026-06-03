@@ -1,0 +1,31 @@
+name: Artifacts Flow
+
+on:
+    workflow_dispatch:
+
+jobs:
+    generate-file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create a test report
+              run: echo "All tests passed successfully on $(date)" > test-report.txt
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: my-test-report
+                path: test-report.txt
+
+    read-file:
+        needs: generate-file
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: my-test-report
+
+            - name: Verify & Print Contents
+              run: |
+                ls -la
+                cat test-report.txt
