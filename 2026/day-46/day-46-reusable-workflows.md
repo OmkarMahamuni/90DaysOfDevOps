@@ -12,10 +12,19 @@ You've been writing workflows from scratch every time. In the real world, teams 
 
 ### Task 1: Understand `workflow_call`
 Before writing any code, research and answer in your notes:
+
 1. What is a **reusable workflow**?
+   - A reusable workflow is a complete, standalone pipeline file that contains entire jobs, runner selections (runs-on), and steps. It acts exactly like a function in software programming. Instead of copying and pasting the same build or deploy jobs across 20 different repositories, you write it once in a central location and reference it from other pipelines.
+
 2. What is the `workflow_call` trigger?
+   - The workflow_call key is an event trigger used under the on: block. It explicitly turns a standard workflow file into a "callable template" that can be invoked by other external "caller" workflows.
+   - It tells GitHub that this workflow is not meant to run by itself, but should run only when another workflow calls it.
+
 3. How is calling a reusable workflow different from using a regular action (`uses:`)?
+   - 
+
 4. Where must a reusable workflow file live?
+
 
 ---
 
