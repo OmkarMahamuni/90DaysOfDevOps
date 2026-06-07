@@ -21,10 +21,11 @@ Before writing any code, research and answer in your notes:
    - It tells GitHub that this workflow is not meant to run by itself, but should run only when another workflow calls it.
 
 3. How is calling a reusable workflow different from using a regular action (`uses:`)?
-   - 
+   - Regular Action (uses: actions/checkout@v4): Represents a collection of sequential steps or scripts that run inside an existing job that you have already defined. It cannot create its own jobs or pick its own runners.
+   - Reusable Workflow (uses: ./.github/workflows/reusable.yml): Represents a collection of entire jobs. When you call a reusable workflow, it can spin up its own completely separate virtual machines, parallel job matrices, and multi-stage dependency structures.
 
 4. Where must a reusable workflow file live?
-
+   - A reusable workflow file must be stored inside the standard .github/workflows/ directory of your repository. It cannot be placed in subdirectories or custom named folders.
 
 ---
 
